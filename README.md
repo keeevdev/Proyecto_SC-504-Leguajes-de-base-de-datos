@@ -1,5 +1,5 @@
 # Proyecto Web
-Proyecto para la clase de Lenguanjes de Bases de Datos
+Proyecto para la clase de Lenguajes de Bases de Datos
 
 ## Miembros
 
