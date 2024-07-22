@@ -5,3 +5,4 @@ Proyecto para la clase de Lenguajes de Bases de Datos
 
 - Kevin Javier Soto Bolaños
 - Kevin Andrés Zamora Espinoza
+- Maripaz Fonseca Solano
