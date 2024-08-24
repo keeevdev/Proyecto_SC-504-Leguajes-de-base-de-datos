@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado de Entrega</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url("https://img.freepik.com/foto-gratis/vasto-edificio-almacenamiento-lleno-productos-colocados-estantes-industriales-etiquetas_482257-83423.jpg?t=st=1724483900~exp=1724487500~hmac=0641df2e03521a968bd639b638e4c2d17d5ce39b4afcb2698860e17208501581&w=1380");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .card-header {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            background-color: rgba(0,0,0,0.7);
+            padding: 1rem;
+        }
+        .form-group {
+            font-size: 1.5rem;
+        }
+        input[type="text"] {
+            font-size: 1.5rem;
+        }
+        .card {
+            margin: 0 auto;
+        }
+        .btn {
+            font-size: 1.5rem;
+            width: 100%;
+        }
+        .corner-text {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="corner-text">Yansol Limitada Entregas</div>
+
+    <div class="container">
+        <div class="col-sm-6">
+            <form th:action="@{/check-entrega}" method="POST" th:object="${entrega}">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Estado de Entrega</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>ID Entrega</label>
+                            <input th:field="*{idEntrega}" type="text" class="form-control" placeholder="Ingrese el ID de la entrega" required>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <input type="submit" value="Consultar" class="btn btn-success" data-toggle="modal" data-target="#entregaModal">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar fechaEntrega y idVenta -->
+    <div class="modal fade" id="entregaModal" tabindex="-1" role="dialog" aria-labelledby="entregaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="entregaModalLabel">Detalles de la Entrega</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Fecha de Entrega:</strong> <span th:text="${entrega.fechaEntrega}"></span></p>
+                    <p><strong>ID Venta:</strong> <span th:text="${entrega.venta.idVenta}"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJRAOpHg7t3EN5blpyt7nLF6BZp6G7niu735R0TZ3yQ7n6hQ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-a5lyopM5nAXK+MbqNlg3hn5ME9nE5MszjDKo5ryzluz5Pz3p4nvuHh5sID1ezx1r" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -21,8 +21,8 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Optional<Cliente> findById(Long id) {
-        return clienteRepository.findById(id);
+    public Optional<Cliente> findById(Long idCliente) {  // Cambiado a idCliente
+        return clienteRepository.findById(idCliente);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        clienteRepository.deleteById(id);
+    public void deleteById(Long idCliente) {  // Cambiado a idCliente
+        clienteRepository.deleteById(idCliente);
     }
 }

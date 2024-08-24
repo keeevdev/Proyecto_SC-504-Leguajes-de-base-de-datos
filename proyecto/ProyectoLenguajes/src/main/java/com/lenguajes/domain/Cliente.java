@@ -1,27 +1,40 @@
-package com.lenguajes.model;
+package com.lenguajes.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
-import java.util.List;
-
+import jakarta.persistence.Column;
 
 @Entity
 public class Cliente {
-    private Long id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cliente_generator")
+    @SequenceGenerator(name="cliente_generator", sequenceName = "cliente_seq", allocationSize=1)
+    @Column(name = "id_cliente")  // Especificamos el nombre de la columna en la tabla
+    private Long idCliente;  // Cambiado a idCliente
+    
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-    private String apellido;
-    private String email;
+    
+    @Column(name = "direccion", nullable = false)
+    private String direccion;
+    
+    @Column(name = "telefono")
+    private String telefono;  // Agregado el campo telefono
+    
+    @Column(name = "correo_electronico")
+    private String correoElectronico;
 
     // Getters y Setters
-    public Long getId() {
-        return id;
+    public Long getIdCliente() {
+        return idCliente;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -32,27 +45,27 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getEmail() {
-        return email;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public List<Paquete> getPaquetes() {
-        return paquetes;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    public void setPaquetes(List<Paquete> paquetes) {
-        this.paquetes = paquetes;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 }
