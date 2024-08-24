@@ -59,9 +59,9 @@
     </style>
     <script>
         function confirmDelete(event, id) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault();
             if (confirm("¿Estás seguro de que deseas eliminar esta venta?")) {
-                window.location.href = '/venta/delete/' + id; // Redirect to delete the sale if confirmed
+                window.location.href = '/venta/delete/' + id;
             }
         }
     </script>
@@ -70,7 +70,6 @@
     <div class="corner-text">Yansol Limitada Ventas</div>
 
     <div class="container">
-        <!-- Apartado para consultar ventas -->
         <div class="col-sm-6">
             <form th:action="@{/buscar-venta}" th:object="${venta}" method="GET">
                 <div class="card">
