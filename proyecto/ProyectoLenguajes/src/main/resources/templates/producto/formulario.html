@@ -30,7 +30,7 @@
 <body>
     <div class="container">
         <h1 th:text="${producto.idProducto != null} ? 'Editar Producto' : 'Crear Producto'"></h1>
-        <form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
+        <form th:action="@{/productos}" th:object="${producto}" method="post">
             <input type="hidden" th:field="*{idProducto}" />
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -59,4 +59,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
