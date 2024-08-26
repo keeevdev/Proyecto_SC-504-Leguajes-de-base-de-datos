@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
@@ -21,8 +20,8 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Optional<Pedido> findById(Long idPedido) {
-        return pedidoRepository.findById(idPedido);
+    public Pedido findById(Long id) {
+        return pedidoRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -31,7 +30,10 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public void deleteById(Long idPedido) {
-        pedidoRepository.deleteById(idPedido);
+    public void deleteById(Long id) {
+        pedidoRepository.deleteById(id);
     }
 }
+
+
+
