@@ -1,30 +1,22 @@
 package com.lenguajes.domain;
 
-import java.util.Date;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Venta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venta_seq")
-    @SequenceGenerator(name = "venta_seq", sequenceName = "VENTA_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVenta;
 
-    private Date fechaPedido;
+    @Column(name = "fecha_pedido")
+    private LocalDate fechaPedido;
 
     @ManyToOne
-    @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
+    @JoinColumn(name = "id_pedido")
     private Pedido pedido;
 
-    // Getters y Setters
     public Long getIdVenta() {
         return idVenta;
     }
@@ -33,11 +25,11 @@ public class Venta {
         this.idVenta = idVenta;
     }
 
-    public Date getFechaPedido() {
+    public LocalDate getFechaPedido() {
         return fechaPedido;
     }
 
-    public void setFechaPedido(Date fechaPedido) {
+    public void setFechaPedido(LocalDate fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
 
@@ -49,3 +41,6 @@ public class Venta {
         this.pedido = pedido;
     }
 }
+
+
+
