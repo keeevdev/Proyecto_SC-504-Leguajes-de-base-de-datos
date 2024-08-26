@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario Pedido</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/6d/d9/17/6dd917d6ea569253404a898dc37f2c19.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${pedido.id_pedido == null ? 'Crear Pedido' : 'Editar Pedido'}"></h1>
+        <form th:action="@{${pedido.id_pedido} == null ? '/pedidos/save' : '/pedidos/update'}" th:object="${pedido}" method="post">
+            <input type="hidden" th:field="*{id_pedido}" />
+
+            <div class="form-group">
+                <label for="fecha_pedido">Fecha:</label>
+                <input type="date" id="fecha_pedido" th:field="*{fecha_pedido}" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="estado_pedido">Estado:</label>
+                <input type="text" id="estado_pedido" th:field="*{estado_pedido}" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="cliente">Cliente:</label>
+                <select id="cliente" th:field="*{cliente}" class="form-control">
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id_cliente}" th:text="${cliente.nombre}"></option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-custom">Guardar</button>
+        </form>
+        <a href="/pedidos" class="btn btn-secondary mt-3">Volver a la lista de pedidos</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
