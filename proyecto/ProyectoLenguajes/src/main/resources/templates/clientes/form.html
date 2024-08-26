@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Cliente</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://maestriasydiplomadostec.blob.core.windows.net/maestriasydiplomados/uploads/programaec/imagen/469/Administraci_n-Aduanera.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            max-width: 600px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${cliente.id_cliente != null} ? 'Editar Cliente' : 'Crear Cliente'"></h1>
+        <form th:action="@{/clientes/save}" th:object="${cliente}" method="post">
+            <input type="hidden" th:field="*{id_cliente}" />
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" placeholder="Nombre" required />
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" th:field="*{direccion}" class="form-control" placeholder="Dirección" required />
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" th:field="*{telefono}" class="form-control" placeholder="Teléfono" />
+            </div>
+            <div class="form-group">
+                <label for="correo_electronico">Correo Electrónico:</label>
+                <input type="email" id="correo_electronico" th:field="*{correo_electronico}" class="form-control" placeholder="Correo Electrónico" />
+            </div>
+            <button type="submit" class="btn btn-custom">Guardar</button>
+            <a href="/clientes" class="btn btn-secondary">Volver a la lista</a>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

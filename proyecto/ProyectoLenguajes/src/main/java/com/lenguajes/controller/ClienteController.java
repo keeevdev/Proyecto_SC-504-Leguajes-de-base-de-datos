@@ -2,14 +2,13 @@ package com.lenguajes.controller;
 
 import com.lenguajes.domain.Cliente;
 import com.lenguajes.service.ClienteService;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 public class ClienteController {
 
     @Autowired
@@ -18,32 +17,31 @@ public class ClienteController {
     @GetMapping
     public String listClientes(Model model) {
         model.addAttribute("clientes", clienteService.findAll());
-        return "cliente/list";
+        return "clientes/list";
     }
 
-    @GetMapping("/{idCliente}")
-    @ResponseBody
-    public Optional<Cliente> getCliente(@PathVariable("idCliente") Long idCliente) {
-        return clienteService.findById(idCliente);
+    @GetMapping("/create")
+    public String createClienteForm(Model model) {
+        model.addAttribute("cliente", new Cliente());
+        return "clientes/form";
     }
 
-    @PostMapping("/add")
-    public String addCliente(@ModelAttribute Cliente cliente) {
+    @PostMapping("/save")
+    public String saveCliente(@ModelAttribute Cliente cliente) {
         clienteService.save(cliente);
-        return "redirect:/cliente";
+        return "redirect:/clientes";
     }
 
-    @PostMapping("/edit/{idCliente}")
-    public String editCliente(@PathVariable("idCliente") Long idCliente, @ModelAttribute Cliente cliente) {
-        cliente.setIdCliente(idCliente); // Usa setIdCliente en lugar de setId
-        clienteService.save(cliente);
-        return "redirect:/cliente";
+    @GetMapping("/edit/{id}")
+    public String editClienteForm(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("cliente", clienteService.findById(id));
+        return "clientes/form";
     }
 
-    @GetMapping("/delete/{idCliente}")
-    public String deleteCliente(@PathVariable("idCliente") Long idCliente) {
-        clienteService.deleteById(idCliente);
-        return "redirect:/cliente";
+    @GetMapping("/delete/{id}")
+    public String deleteCliente(@PathVariable("id") Long id) {
+        clienteService.deleteById(id);
+        return "redirect:/clientes";
     }
 }
 

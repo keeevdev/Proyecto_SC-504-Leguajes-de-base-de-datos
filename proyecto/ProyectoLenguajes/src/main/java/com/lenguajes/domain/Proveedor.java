@@ -4,28 +4,29 @@
  */
 package com.lenguajes.domain;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Cliente {
+public class Proveedor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_cliente;
+    private Long idProveedor;
+
     private String nombre;
     private String direccion;
     private String telefono;
-    private String correo_electronico;
+    private String correoElectronico;
 
-    public Long getId_cliente() {
-        return id_cliente;
+    public Long getIdProveedor() {
+        return idProveedor;
     }
 
-    public void setId_cliente(Long id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdProveedor(Long idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
     public String getNombre() {
@@ -52,12 +53,12 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getCorreo_electronico() {
-        return correo_electronico;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    public void setCorreo_electronico(String correo_electronico) {
-        this.correo_electronico = correo_electronico;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 }
 

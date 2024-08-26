@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://maestriasydiplomadostec.blob.core.windows.net/maestriasydiplomados/uploads/programaec/imagen/469/Administraci_n-Aduanera.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .card {
+            margin-bottom: 15px;
+        }
+        .card-body {
+            padding: 15px;
+        }
+        .summary-card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Productos</h1>
+        <a href="/productos/nuevo" class="btn btn-custom mb-3">Crear Nuevo Producto</a>
+        
+        <div class="summary-card">
+            <h5>Total de Productos</h5>
+            <p th:text="'Total de productos: ' + ${#lists.size(productos)}"></p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4" th:each="producto : ${productos}">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${producto.nombre}"></h5>
+                        <p class="card-text"><strong>Descripción:</strong> <span th:text="${producto.descripcion}"></span></p>
+                        <p class="card-text"><strong>Precio:</strong> $<span th:text="${producto.precio}"></span></p>
+                        <p class="card-text"><strong>Categoría:</strong> <span th:text="${producto.categoria.nombreCategoria}"></span></p>
+                        <a th:href="@{/productos/editar/{id}(id=${producto.idProducto})}" class="btn btn-primary btn-sm">Editar</a>
+                        <a th:href="@{/productos/eliminar/{id}(id=${producto.idProducto})}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</a>
+                        <a th:href="@{/productos/{id}(id=${producto.idProducto})}" class="btn btn-info btn-sm">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

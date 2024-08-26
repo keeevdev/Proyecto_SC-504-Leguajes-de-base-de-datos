@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Producto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://maestriasydiplomadostec.blob.core.windows.net/maestriasydiplomados/uploads/programaec/imagen/469/Administraci_n-Aduanera.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            max-width: 600px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Detalle del Producto</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title" th:text="${producto.nombre}"></h3>
+                <p class="card-text"><strong>Descripción:</strong> <span th:text="${producto.descripcion}"></span></p>
+                <p class="card-text"><strong>Precio:</strong> $<span th:text="${producto.precio}"></span></p>
+                <p class="card-text"><strong>Categoría:</strong> <span th:text="${producto.categoria.nombreCategoria}"></span></p>
+            </div>
+        </div>
+        <a href="/productos" class="btn btn-secondary">Volver a la lista</a>
+        <a th:href="@{/productos/edit/{id}(id=${producto.idProducto})}" class="btn btn-custom">Editar Producto</a>
+        <a th:href="@{/productos/delete/{id}(id=${producto.idProducto})}" class="btn btn-danger" onclick="return confirm('¿Estas seguro que deseas eliminar este producto?')">Eliminar Producto</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

@@ -18,7 +18,6 @@ public class Almacen {
     private String direccion;
     private Integer capacidadMaxima;
 
-    // Getters y Setters
     public Long getIdAlmacen() {
         return idAlmacen;
     }

@@ -1,13 +1,13 @@
 package com.lenguajes.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.lenguajes.domain.Producto;
+
+import java.util.List;
 
 public interface ProductoService {
     List<Producto> findAll();
-    Optional<Producto> findById(Long idProducto);
+    Producto findById(Long id);
     Producto save(Producto producto);
-    void deleteById(Long idProducto);
+    void deleteById(Long id);
 }
+

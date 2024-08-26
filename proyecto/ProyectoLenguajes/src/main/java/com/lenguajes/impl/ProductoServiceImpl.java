@@ -1,14 +1,12 @@
 package com.lenguajes.impl;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.lenguajes.dao.ProductoRepository;
 import com.lenguajes.domain.Producto;
 import com.lenguajes.service.ProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
@@ -22,8 +20,8 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public Optional<Producto> findById(Long idProducto) {
-        return productoRepository.findById(idProducto);
+    public Producto findById(Long id) {
+        return productoRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -32,7 +30,8 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public void deleteById(Long idProducto) {
-        productoRepository.deleteById(idProducto);
+    public void deleteById(Long id) {
+        productoRepository.deleteById(id);
     }
 }
+

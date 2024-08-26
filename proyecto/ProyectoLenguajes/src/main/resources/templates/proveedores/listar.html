@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Proveedores</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/fotos-premium/despacho-aduanas-fondo-pantalla-hd-imagen-fotografica_993236-11492.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .card {
+            margin-bottom: 15px;
+        }
+        .card-body {
+            padding: 15px;
+        }
+        .summary-card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Proveedores</h1>
+        <a href="/proveedores/nuevo" class="btn btn-custom mb-3">Crear Nuevo Proveedor</a>
+        <div class="summary-card">
+            <h5>Total de Proveedores</h5>
+            <p th:text="'Total de proveedores: ' + ${#lists.size(proveedores)}"></p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4" th:each="proveedor : ${proveedores}">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${proveedor.nombre}"></h5>
+                        <p class="card-text"><strong>Dirección:</strong> <span th:text="${proveedor.direccion}"></span></p>
+                        <p class="card-text"><strong>Teléfono:</strong> <span th:text="${proveedor.telefono}"></span></p>
+                        <p class="card-text"><strong>Correo Electrónico:</strong> <span th:text="${proveedor.correoElectronico}"></span></p>
+                        <a th:href="@{/proveedores/editar/{id}(id=${proveedor.idProveedor})}" class="btn btn-primary btn-sm">Editar</a>
+                        <a th:href="@{/proveedores/eliminar/{id}(id=${proveedor.idProveedor})}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

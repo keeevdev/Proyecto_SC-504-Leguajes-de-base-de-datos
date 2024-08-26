@@ -1,9 +1,10 @@
 package com.lenguajes.dao;
 
-import com.lenguajes.domain.Producto;
+import com.lenguajes.domain.Proveedor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductoRepository extends JpaRepository<Producto, Long> {
+public interface ProveedorRepository extends JpaRepository<Proveedor, Long> {
 }
+

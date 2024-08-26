@@ -1,26 +1,29 @@
 package com.lenguajes.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Producto")
 public class Producto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_seq")
-    @SequenceGenerator(name = "producto_seq", sequenceName = "PRODUCTO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_producto")
     private Long idProducto;
 
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
-    private String descripcion;
-    private Double precio;
-    
-    private Long idCategoria;
 
-    // Getters y Setters
+    @Column(name = "descripcion", length = 255)
+    private String descripcion;
+
+    @Column(name = "precio", nullable = false)
+    private Double precio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", nullable = false)
+    private Categoria categoria;
+
     public Long getIdProducto() {
         return idProducto;
     }
@@ -53,11 +56,12 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Long getIdCategoria() {
-        return idCategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setIdCategoria(Long idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
+
